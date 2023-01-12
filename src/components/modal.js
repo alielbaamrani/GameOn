@@ -1,4 +1,4 @@
-const { modalBtn, modalbg, modalBtnSubmit, modalbgsuccess, modalbtnsuccessclose, editNavIcon, closeBtn } = require('./domLinker')
+const { modalBtn, modalbg, modalbgsuccess, modalbtnsuccessclose, editNavIcon, closeBtn } = require('./domLinker')
 
 const editNav = () => {
   const x = document.getElementById('myTopnav')
@@ -12,7 +12,6 @@ const editNav = () => {
 // launch modal event
 modalBtn.forEach(btn => btn.addEventListener('click', () => launchModal()))
 closeBtn.addEventListener('click', () => close())
-modalBtnSubmit.forEach(btn => btn.addEventListener('inputAreValid', () => success()))
 modalbtnsuccessclose.forEach(btn => btn.addEventListener('click', () => finish()))
 
 // open edit nav
@@ -34,4 +33,8 @@ const success = () => {
 // fermer
 const finish = () => {
   modalbgsuccess.style.display = 'none'
+}
+
+module.exports = {
+  success
 }

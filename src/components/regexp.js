@@ -1,3 +1,5 @@
+import { success } from './modal'
+
 const { first, last, email, birthdate, quantity, radiobuttons, formulaire, checkboxbtn } = require('./domLinker')
 
 const formDataFirst = document.querySelector('.formDataFirst')
@@ -85,12 +87,14 @@ const inputsAreValid = () =>
 
 const formSubmit = (event) => {
   // avoid refresh page for each submit
+  console.log('sa marche pas !')
+
   event.preventDefault()
 
-  if (inputsAreValid(event)) {
+  if (inputsAreValid()) {
     // displayConfirmationMessage()
-    success()
     console.log('sa marche !')
+    success()
   }
 }
 
