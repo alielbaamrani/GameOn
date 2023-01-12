@@ -1,115 +1,98 @@
-const formDataFirst = document.querySelector(".formDataFirst");
-const first = document.querySelector("#first");
+const { first, last, email, birthdate, quantity, radiobuttons, formulaire, checkboxbtn } = require('./domLinker')
 
-const formDataLast = document.querySelector(".formDataLast");
-const last = document.querySelector("#last");
+const formDataFirst = document.querySelector('.formDataFirst')
 
-const formDataEmail = document.querySelector(".formDataEmail");
-const email = document.querySelector("#email");
+const formDataLast = document.querySelector('.formDataLast')
 
-const formDataBirthdate = document.querySelector(".formDataBirthdate");
-const birthdate = document.querySelector("#birthdate");
+const formDataEmail = document.querySelector('.formDataEmail')
 
-const formDataQuantity = document.querySelector(".formDataQuantity");
-const quantity = document.querySelector("#quantity");
+const formDataBirthdate = document.querySelector('.formDataBirthdate')
 
-const radiobuttons = document.querySelectorAll('input[name="location"]');
+const formDataQuantity = document.querySelector('.formDataQuantity')
 
+let isValidFirstname = false
+let isValidLastname = false
+let isValidEmail = false
+let isValidBirthdate = false
+let isValidQuantity = false
 // FIRST
 
-first.addEventListener("input", function (e) {
-  console.log(e.target.value);
-  const regex = /([a-zA-Z_]){2,20}/;
-  const currentValue = e.target.value;
-  const valid = regex.test(currentValue);
+const checkInput = (e, formData, regex) => {
+  const currentValue = e.target.value
+  const valid = regex.test(currentValue)
 
   if (valid) {
-    formDataFirst.setAttribute("data-error-visible", false);
+    formData.setAttribute('data-error-visible', false)
   } else {
-    formDataFirst.setAttribute("data-error-visible", true);
+    formData.setAttribute('data-error-visible', true)
   }
 
-  console.log(formDataFirst.getAttribute("data-error-visible"));
-});
+  console.log(formDataFirst.getAttribute('data-error-visible'))
+  return valid
+}
+
+first.addEventListener('input', (e) => {
+  isValidFirstname = checkInput(e, formDataFirst, /([a-zA-Z_]){2,20}/)
+})
 
 // LAST
 
-last.addEventListener("input", function (e) {
-  console.log(e.target.value);
-  const regex = /([a-zA-Z_]){2,20}/;
-  const currentValue = e.target.value;
-  const valid = regex.test(currentValue);
-
-  if (valid) {
-    formDataLast.setAttribute("data-error-visible", false);
-  } else {
-    formDataLast.setAttribute("data-error-visible", true);
-  }
-
-  console.log(formDataLast.getAttribute("data-error-visible"));
-});
+last.addEventListener('input', (e) => {
+  isValidLastname = checkInput(e, formDataLast, /([a-zA-Z_]){2,20}/)
+})
 
 // EMAIL
 
-email.addEventListener("input", function (e) {
-  console.log(e.target.value);
-  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  const currentValue = e.target.value;
-  const valid = regex.test(currentValue);
-
-  if (valid) {
-    formDataEmail.setAttribute("data-error-visible", false);
-  } else {
-    formDataEmail.setAttribute("data-error-visible", true);
-  }
-
-  console.log(formDataEmail.getAttribute("data-error-visible"));
-});
+email.addEventListener('input', (e) => {
+  isValidEmail = checkInput(e, formDataEmail, /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+})
 
 // Birthdate
 
-birthdate.addEventListener("input", function (e) {
-  console.log(e.target.value);
-  const regex = /^\d{4}-\d{2}-\d{2}$/;
-  const currentValue = e.target.value;
-  const valid = regex.test(currentValue);
-
-  if (valid) {
-    formDataBirthdate.setAttribute("data-error-visible", false);
-  } else {
-    formDataBirthdate.setAttribute("data-error-visible", true);
-  }
-
-  console.log(formDataBirthdate.getAttribute("data-error-visible"));
-});
+birthdate.addEventListener('input', (e) => {
+  isValidBirthdate = checkInput(e, formDataBirthdate, /^\d{4}-\d{2}-\d{2}$/)
+})
 
 // quantity
 
-quantity.addEventListener("input", function (e) {
-  console.log(e.target.value);
-  const regex = /^([0-9]|[0-9][0-9])$/;
-  const currentValue = e.target.value;
-  const valid = regex.test(currentValue);
-
-  if (valid) {
-    formDataQuantity.setAttribute("data-error-visible", false);
-  } else {
-    formDataQuantity.setAttribute("data-error-visible", true);
-  }
-
-  console.log(formDataQuantity.getAttribute("data-error-visible"));
-});
-
-// RadioCheckbox
-
-radiobuttons.addEventListener("radio", function(e){
-  console.log(e.target.value);
-
-  
-
+quantity.addEventListener('input', (e) => {
+  isValidQuantity = checkInput(e, formDataQuantity, /^([0-9]|[0-9][0-9])$/)
 })
+// Location
+const atLeastOneLocationIsChecked = () => {
+  let isChecked = false
+  radiobuttons.forEach((input) => {
+    if (input.checked) {
+      isChecked = true
+    }
+  })
+  return isChecked
+}
 
+const atLeastConditionIsChecked = () => {
+  let isChecked = false
+  checkboxbtn.forEach((input) => {
+    if (input.checked) {
+      isChecked = true
+    }
+  })
+  return isChecked
+}
 
+// validation du submit
+const inputsAreValid = () =>
+  isValidFirstname && isValidLastname && isValidEmail && isValidBirthdate && isValidQuantity && atLeastConditionIsChecked() && atLeastOneLocationIsChecked()
 
+const formSubmit = (event) => {
+  // avoid refresh page for each submit
+  event.preventDefault()
 
+  if (inputsAreValid(event)) {
+    // displayConfirmationMessage()
+    success()
+    console.log('sa marche !')
+  }
+}
 
+// event submit form event
+formulaire.addEventListener('submit', formSubmit)

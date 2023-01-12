@@ -13,6 +13,7 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
@@ -57,13 +58,7 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form
-              name="reserve"
-              action="test"
-              method="get"
-              id="Formulaire"
-              onsubmit="return validate();"
-            >
+            <form name="reserve" action="test" method="get" id="formulaire">
               <!-- Prenom -->
               <div
                 data-error="Veuillez entrer 2 caractères ou plus pour le champ du prenom."
@@ -228,7 +223,6 @@
                   id="checkbox1"
                   checked
                 />
-
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
@@ -251,6 +245,17 @@
               />
             </form>
           </div>
+        </div>
+      </div>
+      <div id="bgroundsuccess">
+        <div class="contentsuccess">
+          <span class="text-success">Merci pour votre inscription</span>
+          <input
+          class="btnSuccessClose"
+          type="submit"
+          class="button"
+          value="Fermer"
+        />
         </div>
       </div>
     </main>
