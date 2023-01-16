@@ -11,7 +11,7 @@ const API_URL = JSON.stringify(API_URLS[process.env.NODE_ENV]) // must stringify
 
 const sharedHtmlWebpackConf = name => {
   const result = name === 'index' ? {} : { chunks: ['main'] }
-  result.favicon = path.resolve(__dirname, './src/assets/Logo.png')
+  result.favicon = path.resolve(__dirname, './src/assets/favicon.png')
   result.template = path.resolve(__dirname, `./src/html/${name}.html`)
   result.filename = `${name}.html`
   return result

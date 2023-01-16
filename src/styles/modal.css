@@ -33,12 +33,25 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .header-logo {
-    float: left;
+  float: left;
+  width: 20%;
+  object-fit: cover;
+  height: 100%;
+  max-width: 250px;
+
 }
 .main-navbar {
     float: right;
+    top: 0;
+    right: 20px;
+    background-color: #ffffff;
+
 }
 .topnav a {
   float: left;
@@ -50,6 +63,12 @@ img {
   text-decoration: none;
   font-size: 20px;
   font-family: Roboto, sans-serif;
+}
+
+@media screen and (max-width: 1200px) {
+  .topnav a {
+    font-size: 14px;
+  }
 }
 
 .topnav a:hover {
@@ -69,11 +88,19 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+
+  .topnav {
+    z-index: 10;
+
+  }
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
-    color: #ff0000;
+  }
+
+  .main-navbar {
+    position: fixed;
   }
 }
 
@@ -93,13 +120,6 @@ img {
 
 
 
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -215,7 +235,7 @@ main {
 .text-success {
   margin-top: 33vh;
   font-size: 3rem;
-  color: red;
+  color: #ffffff;
 
 }
 
@@ -499,10 +519,23 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: 4.5rem;
   font-weight: normal;
   white-space: nowrap;
 }
+
+@media screen and (max-width: 768px) {
+  .hero-headline {
+    font-size: 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero-headline {
+    font-size: 4.5rem;
+  }
+}
+
 .hero-text {
   font-weight: normal;
   margin-top: 35px;
@@ -541,7 +574,7 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -557,9 +590,7 @@ footer {
   .hero-content .btn-signup {
     display: none;
   }
-  .hero-headline {
-    font-size: 3rem;
-  }
+
   .hero-text {
 
     font-size: 15px;

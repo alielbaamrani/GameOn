@@ -29,7 +29,7 @@ const checkInput = (e, formData, regex) => {
     formData.setAttribute('data-error-visible', true)
   }
 
-  console.log(formDataFirst.getAttribute('data-error-visible'))
+  console.log(formData.getAttribute('data-error-visible'))
   return valid
 }
 
