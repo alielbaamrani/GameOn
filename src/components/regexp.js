@@ -1,99 +1,76 @@
-import { success } from './modal'
+const { success } = require('./modal')
 
-const { first, last, email, birthdate, quantity, radiobuttons, formulaire, checkboxbtn } = require('./domLinker')
+const { first, last, email, birthdate, quantity, radioButtons, formulaire, checkBoxBtn } = require('./domLinker')
 
-const formDataFirst = document.querySelector('.formDataFirst')
-
-const formDataLast = document.querySelector('.formDataLast')
-
-const formDataEmail = document.querySelector('.formDataEmail')
-
-const formDataBirthdate = document.querySelector('.formDataBirthdate')
-
-const formDataQuantity = document.querySelector('.formDataQuantity')
-
-let isValidFirstname = false
-let isValidLastname = false
-let isValidEmail = false
-let isValidBirthdate = false
-let isValidQuantity = false
-// FIRST
-
-const checkInput = (e, formData, regex) => {
-  const currentValue = e.target.value
-  const valid = regex.test(currentValue)
-
-  if (valid) {
-    formData.setAttribute('data-error-visible', false)
+const displayErrorMessage = (input, isValid) => {
+  if (isValid) {
+    input.parentNode.setAttribute('data-error-visible', false)
   } else {
-    formData.setAttribute('data-error-visible', true)
+    input.parentNode.setAttribute('data-error-visible', true)
   }
-
-  console.log(formData.getAttribute('data-error-visible'))
-  return valid
 }
 
-first.addEventListener('input', (e) => {
-  isValidFirstname = checkInput(e, formDataFirst, /([a-zA-Z_]){2,20}/)
-})
+const dateNotExceedToday = value => new Date(value) < new Date()
+
+const checkInput = (input, isValid) => {
+  displayErrorMessage(input, isValid)
+  return isValid
+}
+
+const isValidFirstname = () => checkInput(first, /([a-zA-Z_]){2,20}/.test(first.value))
+const isValidLastname = () => checkInput(last, /([a-zA-Z_]){2,20}/.test(last.value))
+const isValidEmail = () => checkInput(email, /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value))
+const isValidBirthdate = () => checkInput(birthdate, dateNotExceedToday(birthdate.value))
+const isValidQuantity = () => checkInput(quantity, /^([0-9]|[0-9][0-9])$/.test(quantity.value))
+
+// FIRST
+
+first.addEventListener('input', isValidFirstname)
 
 // LAST
 
-last.addEventListener('input', (e) => {
-  isValidLastname = checkInput(e, formDataLast, /([a-zA-Z_]){2,20}/)
-})
+last.addEventListener('input', isValidLastname)
 
 // EMAIL
 
-email.addEventListener('input', (e) => {
-  isValidEmail = checkInput(e, formDataEmail, /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
-})
+email.addEventListener('input', isValidEmail)
 
 // Birthdate
 
-birthdate.addEventListener('input', (e) => {
-  isValidBirthdate = checkInput(e, formDataBirthdate, /^\d{4}-\d{2}-\d{2}$/)
-})
+birthdate.addEventListener('input', isValidBirthdate)
 
 // quantity
 
-quantity.addEventListener('input', (e) => {
-  isValidQuantity = checkInput(e, formDataQuantity, /^([0-9]|[0-9][0-9])$/)
-})
+quantity.addEventListener('input', isValidQuantity)
+
 // Location
 const atLeastOneLocationIsChecked = () => {
   let isChecked = false
-  radiobuttons.forEach((input) => {
+  radioButtons.forEach((input) => {
     if (input.checked) {
       isChecked = true
     }
   })
+
+  displayErrorMessage(radioButtons[0], isChecked)
+
   return isChecked
 }
 
-const atLeastConditionIsChecked = () => {
-  let isChecked = false
-  checkboxbtn.forEach((input) => {
-    if (input.checked) {
-      isChecked = true
-    }
-  })
-  return isChecked
+const termsOfUseIsChecked = () => {
+  displayErrorMessage(checkBoxBtn, checkBoxBtn.checked)
+  return checkBoxBtn.checked
 }
 
 // validation du submit
 const inputsAreValid = () =>
-  isValidFirstname && isValidLastname && isValidEmail && isValidBirthdate && isValidQuantity && atLeastConditionIsChecked() && atLeastOneLocationIsChecked()
+  isValidFirstname() && isValidLastname() && isValidEmail() && isValidBirthdate() && isValidQuantity() && atLeastOneLocationIsChecked() && termsOfUseIsChecked()
 
 const formSubmit = (event) => {
   // avoid refresh page for each submit
-  console.log('sa marche pas !')
-
   event.preventDefault()
 
   if (inputsAreValid()) {
-    // displayConfirmationMessage()
-    console.log('sa marche !')
     success()
   }
 }

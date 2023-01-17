@@ -13,8 +13,8 @@ module.exports = {
   email: document.getElementById('email'),
   birthdate: document.getElementById('birthdate'),
   quantity: document.getElementById('quantity'),
-  radiobuttons: document.querySelectorAll('input[type=radio]'),
-  checkboxbtn: document.querySelectorAll('input[id=checkbox1]'),
+  radioButtons: document.querySelectorAll('input[type=radio]'),
+  checkBoxBtn: document.getElementById('checkbox1'),
   modalBtnclose: document.querySelectorAll('btn-close'),
   modalbgsuccess: document.getElementById('bgroundsuccess'),
   modalbtnsuccessclose: document.querySelectorAll('.btnSuccessClose')

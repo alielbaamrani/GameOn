@@ -26,9 +26,6 @@ p {
   padding: 0.5vw;
 }
 
-img {
-  padding-right: 1rem;
-}
 
 .topnav {
   overflow: hidden;
@@ -44,14 +41,12 @@ img {
   object-fit: cover;
   height: 100%;
   max-width: 250px;
-
 }
 .main-navbar {
-    float: right;
-    top: 0;
-    right: 20px;
-    background-color: #ffffff;
-
+  float: right;
+  top: 0;
+  right: 20px;
+  background-color: #ffffff;
 }
 .topnav a {
   float: left;
@@ -88,24 +83,27 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-
   .topnav {
-    z-index: 10;
-
+    z-index: 2;
   }
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
   }
 
   .main-navbar {
+    width: 200px;
     position: fixed;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -118,9 +116,6 @@ img {
   }
 }
 
-
-
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -131,8 +126,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -180,7 +173,7 @@ main {
 .bground {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 99;
   left: 0;
   top: 0;
   height: 100%;
@@ -203,7 +196,7 @@ main {
   padding-top: 10px;
 }
 
-#bgroundsuccess {    
+#bgroundsuccess {
   display: none;
   position: fixed;
   z-index: 2;
@@ -213,7 +206,6 @@ main {
   width: 100%;
   overflow: auto;
 }
-
 
 .contentsuccess {
   margin: 5% auto;
@@ -236,7 +228,6 @@ main {
   margin-top: 33vh;
   font-size: 3rem;
   color: #ffffff;
-
 }
 
 .btnSuccessClose {
@@ -252,11 +243,10 @@ main {
   margin-top: 29vh;
 }
 
-
 @media screen and (max-width: 768px) {
   .content {
     max-width: 100%;
-    margin-top: 110px;
+    margin-top: 60px;
     height: 100%;
   }
 
@@ -490,38 +480,37 @@ input[data-error]::after {
 }
 .hero-section {
   border-radius: 10px;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  display: flex;
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
 }
 .hero-content {
   padding: 51px 67px;
-  grid-column: span 4;
   background: #232323;
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
+  min-width: 510px;
+  flex: 0;
 }
-.hero-content::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: #232323;
-  position: absolute;
-  right: -80px;
-  top: 0;
-}
+
 .hero-content > * {
   position: relative;
   z-index: 1;
 }
 .hero-headline {
-  font-size: 4.5rem;
+  font-size: 5.5rem;
   font-weight: normal;
   white-space: nowrap;
+}
+
+.hero-img {
+  width: 100%;
+  padding: 0;
+  object-fit: cover;
+  flex: 1
+  ;
 }
 
 @media screen and (max-width: 768px) {
@@ -530,11 +519,7 @@ input[data-error]::after {
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .hero-headline {
-    font-size: 4.5rem;
-  }
-}
+
 
 .hero-text {
   font-weight: normal;
@@ -549,16 +534,7 @@ input[data-error]::after {
   margin: 0;
   margin-top: 59px;
 }
-.hero-img {
-  grid-column: span 8;
-}
-.hero-img img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  padding: 0;
-  object-fit: cover;
-}
+
 .copyrights {
   color: #fe142f;
   padding: 0;
@@ -592,7 +568,6 @@ footer {
   }
 
   .hero-text {
-
     font-size: 15px;
   }
   .hero-img img {
@@ -619,4 +594,3 @@ footer {
     opacity: 1;
   }
 }
-
