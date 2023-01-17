@@ -1,5 +1,6 @@
 const { modalBtn, modalbg, modalbgsuccess, modalbtnsuccessclose, editNavIcon, closeBtn } = require('./domLinker')
 
+// EditNav
 const editNav = () => {
   const x = document.getElementById('myTopnav')
   if (x.className === 'topnav') {
@@ -9,12 +10,12 @@ const editNav = () => {
   }
 }
 
-// launch modal event
+// lancement des modal
 modalBtn.forEach(btn => btn.addEventListener('click', () => launchModal()))
 closeBtn.addEventListener('click', () => close())
 modalbtnsuccessclose.forEach(btn => btn.addEventListener('click', () => finish()))
 
-// open edit nav
+// ouverture de la EditNav
 editNavIcon.addEventListener('click', () => editNav())
 
 // ouvrir le form
@@ -30,7 +31,7 @@ const success = () => {
   modalbg.style.display = 'none'
   modalbgsuccess.style.display = 'block'
 }
-// fermer
+// fermer la page de confirmation
 const finish = () => {
   modalbgsuccess.style.display = 'none'
 }

@@ -56,7 +56,7 @@ const atLeastOneLocationIsChecked = () => {
 
   return isChecked
 }
-
+// condition General
 const termsOfUseIsChecked = () => {
   displayErrorMessage(checkBoxBtn, checkBoxBtn.checked)
   return checkBoxBtn.checked
@@ -67,7 +67,7 @@ const inputsAreValid = () =>
   isValidFirstname() && isValidLastname() && isValidEmail() && isValidBirthdate() && isValidQuantity() && atLeastOneLocationIsChecked() && termsOfUseIsChecked()
 
 const formSubmit = (event) => {
-  // avoid refresh page for each submit
+  // empeche la page de se recharger / refesh
   event.preventDefault()
 
   if (inputsAreValid()) {
