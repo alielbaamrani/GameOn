@@ -10,9 +10,14 @@ const editNav = () => {
   }
 }
 
-// lancement des modal
+/* Lancement de mes differentes modals */
+// pour chaque btn de modalBtn sur l'effet du 'click' execute LaunchModal ( Ouverture du Form)
 modalBtn.forEach(btn => btn.addEventListener('click', () => launchModal()))
+
+// Sur l'effet 'click' de CloseBtn execute close (fermeture du Form)
 closeBtn.addEventListener('click', () => close())
+
+// pour chaque btn de modalBtnsuccessclose sur l'effet du 'click' execute finish ( Ouverture du Form)
 modalbtnsuccessclose.forEach(btn => btn.addEventListener('click', () => finish()))
 
 // ouverture de la EditNav
