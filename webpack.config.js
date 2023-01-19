@@ -3,15 +3,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-const API_URLS = {
-  development: 'http://localhost:3000'
-}
-
-const API_URL = JSON.stringify(API_URLS[process.env.NODE_ENV]) // must stringify but I'm not sure why!
-
 const sharedHtmlWebpackConf = name => {
   const result = name === 'index' ? {} : { chunks: ['main'] }
-  result.favicon = path.resolve(__dirname, './src/assets/favicon.png')
+  result.favicon = path.resolve(__dirname, './favicon.png')
   result.template = path.resolve(__dirname, `./src/html/${name}.html`)
   result.filename = `${name}.html`
   return result
@@ -22,13 +16,14 @@ const config = {
     main: path.resolve(__dirname, './src/app.js')
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './docs'),
     filename: '[name].bundle.js',
-    publicPath: '/',
-    assetModuleFilename: 'src/assets/[name][ext]'
+    publicPath: '',
+    assetModuleFilename: './src/assets/[name][ext]',
+    clean: true
   },
   devServer: {
-    port: 8089,
+    port: 8090,
     compress: false,
     static: {
       directory: path.join(__dirname, '/')
@@ -40,12 +35,20 @@ const config = {
     // Define global variable from NODE_ENV for the app
     new webpack.DefinePlugin({
       DEBUG: process.env.NODE_ENV === 'development',
-      API_URL
+      VERSION: JSON.stringify(require('./package.json').version)
     })
   ],
   module: {
     // https://github.com/jantimon/html-webpack-plugin/blob/main/examples/custom-template/template.html
     rules: [
+      {
+        test: /\.(html)$/,
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
+      },
       // https://webpack.js.org/loaders/css-loader/
       {
         test: /\.css$/,
@@ -61,7 +64,7 @@ const config = {
       }
     ]
   },
-  devtool: 'eval-source-map'
+  devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : 'eval-source-map'
 }
 
 module.exports = (env, argv) => {
