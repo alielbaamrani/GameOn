@@ -8,6 +8,7 @@ const { first, last, email, birthdate, quantity, radioButtons, formulaire, check
 * @param {HTMLElement} input = Valeur du Form
 * @param {boolean} isValid = validation du regex ou non
  */
+
 const displayErrorMessage = (input, isValid) => {
   if (isValid) {
     input.parentNode.setAttribute('data-error-visible', false)
