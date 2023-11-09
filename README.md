@@ -1,4 +1,6 @@
-# Projet GameOn - Projet 3 - OpenClassRoom
+# GameOn - Créez une landing page avec Javascript
+
+ Projet GameOn - Projet 3 - OpenClassRoom
 
 ## Installer Webpack
 
