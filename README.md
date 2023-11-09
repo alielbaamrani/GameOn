@@ -1,4 +1,4 @@
-# Projet GameOn - Projet 4 - OpenClassRoom
+# Projet GameOn - Projet 3 - OpenClassRoom
 
 ## Installer Webpack
 
